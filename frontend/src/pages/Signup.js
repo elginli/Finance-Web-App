@@ -9,10 +9,20 @@ const Signup = () => {
     const[email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
+    const isValidEmail = (email) => {
+        // Simple regex for basic email validation
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
     const submit = async (e) => {
         e.preventDefault(); 
 
         console.log(name + '|' + email + '|' + password)
+
+        if (!isValidEmail(email)) {
+            alert("Please enter a valid email address.");
+            return; // Stop the submission
+        }
 
         try {
             const response = await axios.post("http://localhost:4000/signup", {
