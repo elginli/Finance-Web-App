@@ -4,26 +4,29 @@ import {useNavigate, Link} from "react-router-dom"
 
 const Login = () => {
 
+    const redirect = useNavigate()
     const[email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
     async function submit(e) {
         e.preventDefault();
 
+        console.log(email + '|' + password)
+
         try {
-            const response = await axios.post("http://localhost:3000/login", {
+            const response = await axios.post("http://localhost:4000/login", {
                 email, password
             });
 
             const data = response.data;
             if (data.status === "exist") {
-                navigate("/home", { state: { id: data.user.email } }); // Passing user email as state to home
+                redirect("/home", { state: { id: data.user.email } }); // Passing user email as state to home
             } else if (data.status === "notexist") {
                 alert("User has not signed up");
             }
-        } catch (error) {
+        } catch (e) {
             alert("Login failed");
-            console.log(error);
+            console.log(e);
         }
     }
 
@@ -37,8 +40,6 @@ const Login = () => {
                 <button type="submit">Login</button>
             </form>
 
-            <br />
-            <p>OR</p>
             <br />
 
             <Link to="/signup">Sign Up</Link>
