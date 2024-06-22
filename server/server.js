@@ -9,8 +9,8 @@ const app = express();
 
 const bcrypt = require('bcrypt')
 
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended:false}))
+app.use(express.json())
+app.use(express.urlencoded({extended:false}))
 
 const corsOptions = {
     origin: '*',
@@ -21,7 +21,7 @@ const corsOptions = {
 app.use(cors(corsOptions))
 app.use('/', router)
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 const dbOptions = {useNewUrlParser:true, useUnifiedTopology:true}
 mongoose.connect(process.env.DB_URI, dbOptions)
 .then(() => console.log('DB Connected'))
