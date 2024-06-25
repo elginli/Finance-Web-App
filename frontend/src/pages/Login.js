@@ -20,7 +20,7 @@ const Login = () => {
 
             const data = response.data;
             if (data.status === "exist") {
-                redirect("/home", { state: { id: data.user.email } }); // Passing user email as state to home
+                redirect("/home", { state: { id: data.email } }); // Passing user email as state to home
             } else if (data.status === "notexist") {
                 alert("User has not signed up");
             }

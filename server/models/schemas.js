@@ -9,7 +9,7 @@ const userSchema = new Schema({
 
 const userDataSchema = new Schema({
     email: {type:String},
-    month: {type: Number,required: true},
+    month: {type: String,required: true},
     year: {type: Number,required: true},
     budget: {type: Number,required: true},
     food: {type: Number, default: 0},
