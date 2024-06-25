@@ -1,0 +1,88 @@
+.parent-chart-container{
+    display: flex;
+    justify-content: center;  /* Center horizontally */
+}
+
+.chart-container {
+    max-width: 30%;  
+    width: 100%;  
+    height: auto;  
+    aspect-ratio: 2 / 1;  
+    margin: 10px;
+    display: inline-block;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 10px;
+    background-color: #fff;
+    vertical-align: top;  
+}
+
+.container {
+    text-align: center;  /* Center align the text */
+    padding: 20px;  /* Add padding for spacing */
+    background-color: #f8f8f8;  /* A light background to make the text pop */
+    border-bottom: 2px solid #e2e2e2;  /* A subtle border for a slight separation */
+    margin-bottom: 50px;
+}
+
+.container h1 {
+    font-size: 2.5rem;  
+    color: #333;  
+    margin-bottom: 0.5em;  
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  
+}
+
+.container p {
+    font-size: 1.2rem;  
+    color: black;  
+    margin-top: 0.5em;  
+    font-family: 'Arial', sans-serif;  
+}
+
+/* Welcome message specific styling */
+.container p.welcome {
+    font-weight: bold;  
+    color: rgb(0, 115, 255);  
+}
+
+.BudgetForm {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);  
+    gap: 20px;  
+    max-width: 600px;  
+    margin: auto;  
+    padding: 20px;
+    background: #f7f7f7;  
+    border-radius: 10px;  
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);  
+}
+
+.BudgetForm label {
+    display: block; 
+    margin-bottom: 5px;  
+    font-weight: bold;  
+    color: black;  
+}
+
+.BudgetForm input, .BudgetForm select {
+    width: 90%;  
+    padding: 8px;  
+    border: 1px solid #ccc;  
+    border-radius: 4px;  
+}
+
+.BudgetForm button {
+    grid-column: span 2; 
+    padding: 10px 20px;
+    background-color: rgba(43, 43, 233, 0.895);  
+    color: white; 
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;  
+    transition: background-color 0.3s ease;  
+}
+
+.BudgetForm button:hover {
+    background-color: rgb(40, 40, 234);  
+}
