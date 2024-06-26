@@ -16,8 +16,9 @@ const userDataSchema = new Schema({
     home: {type: Number, default: 0},
     school: {type: Number, default: 0},
     transportation: {type: Number, default: 0},
-    fun: {type: Number, default: 0},
-    misc: {type: Number, default: 0},
+    entertainment: {type: Number, default: 0},
+    personal: {type: Number, default: 0},
+    savings: {type: Number, default: 0},
     createdAt: { type: Date, default: Date.now}
 
 })

@@ -1,6 +1,7 @@
 import React, {useEffect, useState, useSyncExternalStore} from "react"
 import axios from "axios"
 import {useNavigate, Link} from "react-router-dom"
+import "./Signup.css"
 
 const Signup = () => {
 
@@ -21,7 +22,7 @@ const Signup = () => {
 
         if (!isValidEmail(email)) {
             alert("Please enter a valid email address.");
-            return; // Stop the submission
+            return
         }
 
         try {
@@ -30,12 +31,10 @@ const Signup = () => {
             });
 
             const data = response.data;
-            // Assuming backend sends specific status messages or codes:
             if (data.message === 'Email already in use') {
                 alert("User already exists");
             } else {
-                // Navigate to 'home' upon successful signup
-                redirect('/home', { state: { id: email } });
+                redirect('/home', { state: { id: data.email } });
             }
         } catch (e) {
             alert("Signup failed");
@@ -44,19 +43,21 @@ const Signup = () => {
     };
 
     return(
-        <div className="login">
-            <h1>Signup</h1>
+        <div className="signup-container">
+            <div className="signup">
+                <h1>Sign Up</h1>
 
-            <form onSubmit={submit}>
-                <input type = "text" onChange={(e)=>{setName(e.target.value)}} placeholder="name" name = "name" id = "name" value={name}/>
-                <input type = "text" onChange={(e)=>{setEmail(e.target.value)}} placeholder="email" name = "email" id = "email" value={email}/>
-                <input type = "text" onChange={(e)=>{setPassword(e.target.value)}} placeholder="password" name = "password" id = "password" value={password}/>
-                <button type="submit">Signup</button>
-            </form>
+                <form onSubmit={submit}>
+                    <input type = "text" onChange={(e)=>{setName(e.target.value)}} placeholder="name" name = "name" id = "name" value={name}/>
+                    <input type = "text" onChange={(e)=>{setEmail(e.target.value)}} placeholder="email" name = "email" id = "email" value={email}/>
+                    <input type = "text" onChange={(e)=>{setPassword(e.target.value)}} placeholder="password" name = "password" id = "password" value={password}/>
+                <button type="submit">Sign Up</button>
+                </form>
 
-            <br />
+                <br />
 
-            <Link to="/login">Already have an account? Login</Link>
+                <Link to="/">Already have an account? Login</Link>
+            </div>
         </div>
     )
 }

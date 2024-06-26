@@ -4,13 +4,13 @@ const schemas = require('../models/schemas')
 const bcrypt = require('bcrypt');
 
 router.post('/home', async(req,res) => {
-    const {email, budget, month, year, food, home, school, transportation, fun, misc} = req.body
+    const {email, budget, month, year, food, home, school, transportation, entertainment, personal, savings} = req.body
 
-    const newUserData = new schemas.UserData({email: email, budget: budget, month: month, year: year, food: food, home: home, school: school, transportation: transportation, fun: fun, misc: misc})
+    const newUserData = new schemas.UserData({email: email, budget: budget, month: month, year: year, food: food, home: home, school: school, transportation: transportation, entertainment: entertainment, personal: personal, savings: savings})
     const saveUserData = await newUserData.save()
 
     if (saveUserData) {
-        console.log(`Email: ${email}, Budget: ${budget}, Month: ${month}, Year: ${year}, Food: ${food}, Home: ${home}, School: ${school}, Transportation: ${transportation}, Fun: ${fun}, Misc: ${misc}`)
+        console.log(`Email: ${email}, Budget: ${budget}, Month: ${month}, Year: ${year}, Food: ${food}, Home: ${home}, School: ${school}, Transportation: ${transportation}, Entertainment: ${entertainment}, Personal: ${personal}, Savings: ${savings}`)
         res.send('Data recieved')
     } else {
         res.send('Error')
@@ -32,7 +32,8 @@ router.post('/login', async(req, res) => {
         if (!existingUser) {
             return res.status(404).send({ status: "notexist", message: "User not found." });
         }
-
+        
+        //checks hashed password
         const isMatch = await bcrypt.compare(password, existingUser.password);
         if (isMatch) {
             res.send({ status: "exist", message: "Logged In"});
@@ -43,14 +44,6 @@ router.post('/login', async(req, res) => {
         console.error('Login error:', e);
         res.status(500).send({ status: "error", message: "Internal server error" });
     }
-
-    /*
-    if (email === user.email && password === user.password) {
-        res.send({ status: "exist", user: { name: user.name, email: user.email } });
-    } else {
-        res.send({ status: "notexist" });
-    }
-    */
 });
 
 router.post('/signup', async (req, res) => {

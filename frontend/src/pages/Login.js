@@ -1,6 +1,7 @@
 import React, {useEffect, useState, useSyncExternalStore} from "react"
 import axios from "axios"
 import {useNavigate, Link} from "react-router-dom"
+import "./Login.css"
 
 const Login = () => {
 
@@ -31,19 +32,21 @@ const Login = () => {
     }
 
     return(
-        <div className="login">
-            <h1>Login</h1>
+        <div className="login-container">
+            <div className="login">
+                <h1>Login</h1>
 
-            <form onSubmit={submit}>
-                <input type = "email" onChange={(e)=>{setEmail(e.target.value)}} placeholder="email" name = "email" id = "email"/>
-                <input type = "password" onChange={(e)=>{setPassword(e.target.value)}} placeholder="password" name = "password" id = "password" />
-                <button type="submit">Login</button>
-            </form>
+                <form onSubmit={submit}>
+                    <input type = "text" onChange={(e)=>{setEmail(e.target.value)}} placeholder="email" name = "email" id = "email"/>
+                    <input type = "text" onChange={(e)=>{setPassword(e.target.value)}} placeholder="password" name = "password" id = "password" />
+                    <button type="submit">Login</button>
+                </form>
 
-            <br />
+                <br />
 
-            <Link to="/signup">Sign Up</Link>
+                <Link to="/signup">Don't have an Account? Sign Up</Link>
         
+            </div>
         </div>
     )
 }

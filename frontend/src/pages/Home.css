@@ -1,6 +1,6 @@
 .parent-chart-container{
     display: flex;
-    justify-content: center;  /* Center horizontally */
+    justify-content: center;
 }
 
 .chart-container {
@@ -19,10 +19,10 @@
 }
 
 .container {
-    text-align: center;  /* Center align the text */
-    padding: 20px;  /* Add padding for spacing */
-    background-color: #f8f8f8;  /* A light background to make the text pop */
-    border-bottom: 2px solid #e2e2e2;  /* A subtle border for a slight separation */
+    text-align: center;  
+    padding: 20px;  
+    background-color: #f8f8f8;  
+    border-bottom: 2px solid #e2e2e2;  
     margin-bottom: 50px;
 }
 
@@ -40,7 +40,6 @@
     font-family: 'Arial', sans-serif;  
 }
 
-/* Welcome message specific styling */
 .container p.welcome {
     font-weight: bold;  
     color: rgb(0, 115, 255);  
@@ -65,8 +64,15 @@
     color: black;  
 }
 
-.BudgetForm input, .BudgetForm select {
+.BudgetForm input {
     width: 90%;  
+    padding: 8px;  
+    border: 1px solid #ccc;  
+    border-radius: 4px;  
+}
+
+.BudgetForm select{
+    width: 96%;  
     padding: 8px;  
     border: 1px solid #ccc;  
     border-radius: 4px;  

@@ -14,16 +14,18 @@ const Home = () => {
     const [school, setSchool] = useState(0)
     const [home, setHome] = useState(0)
     const [transportation, setTransportation] = useState(0)
-    const [fun, setFun] = useState(0)
-    const [misc, setMisc] = useState(0)
+    const [entertainment, setEntertainment] = useState(0)
+    const [personal, setPersonal] = useState(0)
+    const [savings, setSavings] = useState(0)
     const [error, setError] = useState('')
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [showCharts, setShowCharts] = useState(false)
+    const [expenses, setExpenses] = useState('')
 
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     const currentYear = new Date().getFullYear();
-    const years = Array.from({ length: 11 }, (_, index) => currentYear - 5 + index); // Creates an array from 5 years ago to 5 years in the future
+    const years = Array.from({ length: 11 }, (_, index) => currentYear + index); // Creates an array from this year to next 10 years
 
     useEffect(() => {
         const fetchData = async () => {
@@ -50,17 +52,19 @@ const Home = () => {
             home: home || 0,
             school: school || 0,
             transportation: transportation || 0,
-            fun: fun || 0,
-            misc: misc || 0
+            entertainment: entertainment || 0,
+            personal: personal || 0,
+            savings: savings || 0
         }
 
         await axios.post("http://localhost:4000/home", postData)
-        console.log(email + '|' + budget + '|' + month + '|' + year + '|' + food + '|' + school + '|' + home + '|' + transportation + '|' + fun + '|' + misc)
+        console.log(email + '|' + budget + '|' + month + '|' + year + '|' + food + '|' + school + '|' + home + '|' + transportation + '|' + entertainment + '|' + personal + '|' + savings)
         
     }
 
     const checkBudgetConstraints = () => {
-        const totalExpenses = parseFloat(food) + parseFloat(home) + parseFloat(school) + parseFloat(transportation) + parseFloat(fun) + parseFloat(misc)
+        const totalExpenses = parseFloat(food) + parseFloat(home) + parseFloat(school) + parseFloat(transportation) + parseFloat(entertainment) + parseFloat(personal) + parseFloat(savings)
+        setExpenses(totalExpenses)
         console.log(totalExpenses, parseFloat(budget))
         if (totalExpenses > parseFloat(budget)) {
             alert("Total expenses exceed the budget!");
@@ -86,11 +90,11 @@ const Home = () => {
 
     
     const chartData = {
-        labels: ['Food', 'Home', 'School', 'Transportation', 'Fun', 'Misc'],
+        labels: ['Food', 'Home', 'School', 'Transportation', 'Entertainment', 'Personal', 'Savings'],
         datasets: [
             {
                 label: 'Spending',
-                data: [food, home, school, transportation, fun, misc],
+                data: [food, home, school, transportation, entertainment, personal, savings],
                 backgroundColor: [
                     'rgba(255, 99, 132, 1)',  // Red
                     'rgba(54, 162, 235, 1)',  // Blue
@@ -111,19 +115,6 @@ const Home = () => {
             }
         ]
     };
-
-    const chartOptions = {
-        responsive: true,
-        maintainAspectRatio: false,  // Allows the chart to fit into the div size
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-    };
-
 
     return(
         <div>
@@ -170,12 +161,16 @@ const Home = () => {
                 <input type="number" value={transportation} onChange={e => setTransportation(e.target.value)} />
             </label>
             <label>
-                Fun:
-                <input type="number" value={fun} onChange={e => setFun(e.target.value)} />
+                Entertainment:
+                <input type="number" value={entertainment} onChange={e => setEntertainment(e.target.value)} />
             </label>
             <label>
-                Misc:
-                <input type="number" value={misc} onChange={e => setMisc(e.target.value)} />
+                Personal:
+                <input type="number" value={personal} onChange={e => setPersonal(e.target.value)} />
+            </label>
+            <label>
+                Savings:
+                <input type="number" value={savings} onChange={e => setSavings(e.target.value)} />
             </label>
             <button type="submit" onClick={submit}>Submit</button>
         </form>
@@ -183,12 +178,12 @@ const Home = () => {
         {showCharts && (
             <div className="parent-chart-container">
                 <div className="chart-container">
-                    <h2>Distribution</h2>
+                    <h2>Budget Distribution: ${budget}</h2>
                     <Doughnut data={chartData} />
                 </div>
 
                 <div className="chart-container">
-                    <h2>Spending</h2>
+                    <h2>Total Spending: ${expenses}</h2>
                     <Bar data={chartData} />
                 </div>
             </div>
