@@ -10,13 +10,31 @@ router.post('/home', async(req,res) => {
     const saveUserData = await newUserData.save()
 
     if (saveUserData) {
-        console.log(`Email: ${email}, Budget: ${budget}, Month: ${month}, Year: ${year}, Food: ${food}, Home: ${home}, School: ${school}, Transportation: ${transportation}, Entertainment: ${entertainment}, Personal: ${personal}, Savings: ${savings}`)
+        console.log(`POST /home | Email: ${email}, Budget: ${budget}, Month: ${month}, Year: ${year}, Food: ${food}, Home: ${home}, School: ${school}, Transportation: ${transportation}, Entertainment: ${entertainment}, Personal: ${personal}, Savings: ${savings}`)
         res.send('Data recieved')
     } else {
         res.send('Error')
     }
 
     res.end()
+})
+
+router.post('/userData', async(req, res) => {
+    const {email, month, year} = req.body
+    console.log("POST /uesrData | Received:", email, month, year)
+
+    try {
+        const budgetData = await schemas.UserData.findOne({ email, month, year })
+        console.log("Found data:", budgetData)
+
+        if (budgetData) {
+            return res.json(budgetData)
+        } else {
+            res.status(404).json({ message: 'No data found for the specified parameters.' });
+        }
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
 })
 
 router.post('/login', async(req, res) => {

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react"
 import axios from "axios"
-import {Navigate, Link} from "react-router-dom"
+import {useNavigate, Link} from "react-router-dom"
 import { Chart as ChartJS } from "chart.js/auto"
 import { Bar, Doughnut, Line } from "react-chartjs-2"
 import "./Home.css"
@@ -8,8 +8,6 @@ import "./Home.css"
 const Home = () => {
 
     const [budget, setBudget] = useState(0)
-    const [month, setMonth] = useState('')
-    const [year, setYear] = useState('')
     const [food, setFood] = useState(0)
     const [school, setSchool] = useState(0)
     const [home, setHome] = useState(0)
@@ -26,6 +24,10 @@ const Home = () => {
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     const currentYear = new Date().getFullYear();
     const years = Array.from({ length: 11 }, (_, index) => currentYear + index); // Creates an array from this year to next 10 years
+
+    const [month, setMonth] = useState('January')
+    const [year, setYear] = useState(currentYear)
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -116,12 +118,38 @@ const Home = () => {
         ]
     };
 
+
+    const chartOptions = {
+        plugins: {
+          legend: {
+            labels: {
+              color: 'black' // Sets the legend labels to black
+            }
+          },
+          tooltip: {
+            titleColor: 'black', // Title color in tooltips
+            bodyColor: 'black'   // Body color in tooltips
+          }
+        },
+        scales: {
+          x: {
+            ticks: {
+              color: 'black' // Sets x-axis tick labels to black
+            }
+          },
+          y: {
+            ticks: {
+              color: 'black' // Sets y-axis tick labels to black
+            }
+          }
+        }
+      };
+
     return(
-        <div>
+    <div>
        <div className="container">
             <h1>Budget Chart</h1>
             <p className="welcome">Welcome {name}!</p>
-            <p>Enter Monthly Budget and Expenses</p>
         </div>
         <form className = "BudgetForm">
             <label>
@@ -179,12 +207,12 @@ const Home = () => {
             <div className="parent-chart-container">
                 <div className="chart-container">
                     <h2>Budget Distribution: ${budget}</h2>
-                    <Doughnut data={chartData} />
+                    <Doughnut data={chartData} options={chartOptions} />
                 </div>
 
                 <div className="chart-container">
                     <h2>Total Spending: ${expenses}</h2>
-                    <Bar data={chartData} />
+                    <Bar data={chartData} options={chartOptions} />
                 </div>
             </div>
         )}
