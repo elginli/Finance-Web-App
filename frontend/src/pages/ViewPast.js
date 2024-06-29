@@ -31,6 +31,7 @@ const ViewPast = () => {
     const [month, setMonth] = useState('January')
     const [year, setYear] = useState(currentYear)
 
+    /*
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -45,6 +46,27 @@ const ViewPast = () => {
     
         fetchData();
     });
+    */
+   
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const token = sessionStorage.getItem('token');
+                const response = await axios.get("http://localhost:4000/user",{
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }}
+                )
+
+                setName(response.data.name)
+                setEmail(response.data.email) 
+            } catch (error) {
+                console.error('Failed to fetch name:', error)
+            }
+        }
+    
+        fetchData()
+    })
 
     const getUserData = async () => {
         try {
@@ -76,7 +98,7 @@ const ViewPast = () => {
         }
     };
 
-    const formattedDate = creationDate ? moment(creationDate).format('MMMM Do YYYY, h:mm:ss a') : 'Loading...'
+    const formattedDate = creationDate ? moment(creationDate).format('MMMM Do YYYY, h:mm:ss a') : 'Waiting on Input'
 
     async function submit(e) {
         e.preventDefault();

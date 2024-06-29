@@ -9,6 +9,7 @@ const Signup = () => {
     const[name, setName] = useState('')
     const[email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [errorMessage, setErrorMessage] = useState('');
 
     const isValidEmail = (email) => {
         // Simple regex for basic email validation
@@ -21,7 +22,7 @@ const Signup = () => {
         console.log(name + '|' + email + '|' + password)
 
         if (!isValidEmail(email)) {
-            alert("Please enter a valid email address.");
+            setErrorMessage("Please enter a valid email address.")
             return
         }
 
@@ -32,12 +33,12 @@ const Signup = () => {
 
             const data = response.data;
             if (data.message === 'Email already in use') {
-                alert("User already exists");
+                setErrorMessage("User already exists");
             } else {
-                redirect('/home', { state: { id: data.email } });
+                redirect('/', { state: { id: data.email } });
             }
         } catch (e) {
-            alert("Signup failed");
+            setErrorMessage("Signup failed");
             console.log(e);
         }
     };
@@ -53,6 +54,7 @@ const Signup = () => {
                     <input type = "text" onChange={(e)=>{setPassword(e.target.value)}} placeholder="password" name = "password" id = "password" value={password}/>
                 <button type="submit">Sign Up</button>
                 </form>
+                {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
 
                 <br />
 

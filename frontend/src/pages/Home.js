@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from "react"
 import axios from "axios"
-import {useNavigate, Link} from "react-router-dom"
 import { Chart as ChartJS } from "chart.js/auto"
-import { Bar, Doughnut, Line } from "react-chartjs-2"
+import { Bar, Doughnut } from "react-chartjs-2"
 import "./Home.css"
 
 const Home = () => {
@@ -32,17 +31,22 @@ const Home = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get("http://localhost:4000/user");
+                const token = sessionStorage.getItem('token');
+                const response = await axios.get("http://localhost:4000/user",{
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }}
+                )
+
                 setName(response.data.name)
                 setEmail(response.data.email) 
-                console.log(response.data.name, response.data.email) 
             } catch (error) {
                 console.error('Failed to fetch name:', error)
             }
-        };
+        }
     
-        fetchData();
-    });
+        fetchData()
+    })
 
     const axiosPostData = async() =>{
         const postData = {
@@ -69,7 +73,7 @@ const Home = () => {
         setExpenses(totalExpenses)
         console.log(totalExpenses, parseFloat(budget))
         if (totalExpenses > parseFloat(budget)) {
-            alert("Total expenses exceed the budget!");
+            alert("Total expenses exceed the budget!")
             return false;
         }else{
             return true
@@ -77,16 +81,16 @@ const Home = () => {
     }
 
     async function submit(e) {
-        e.preventDefault();
+        e.preventDefault()
 
         if(!checkBudgetConstraints()){
-            setError(<p>Total expenses exceed the budget.</p>);
-            setShowCharts(false); 
+            setError(<p>Total expenses exceed the budget.</p>)
+            setShowCharts(false)
             return
         } else {
             setError('')
             axiosPostData()
-            setShowCharts(true);
+            setShowCharts(true)
         }
     }
 

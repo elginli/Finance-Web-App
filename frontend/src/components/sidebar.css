@@ -1,0 +1,58 @@
+.sidebar {
+    width: 170px;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: lightgray;
+    transition: width 0.3s ease;
+    overflow-x: hidden; 
+}
+
+.sidebar.closed {
+    width: 80px; 
+    background-color: transparent;
+}
+
+.toggle-button {
+    padding: 12px 20px;       
+    width: auto;              
+    margin: 10px;
+    border: 2px solid #0056b3;              
+    background-color: #007bff; 
+    color: white;             
+    cursor: pointer;
+    font-size: larger;        
+    text-align: center;
+    border-radius: 5px;       
+}
+
+.toggle-button:hover {
+    background-color: #0056b3; 
+}
+
+.links {
+    padding: 10px 0; 
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+.links a {
+    padding: 12px 10px; 
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    border-bottom: 1px solid grey;
+    display: block;
+    text-align: center;
+    margin: 5px 0; 
+    background-color: lightgray; 
+    width: 90%; 
+    border-radius: 10px; 
+    transition: background-color 0.2s, color 0.2s; 
+}
+
+.links a:hover {
+    background-color: #e2e2e2; 
+}

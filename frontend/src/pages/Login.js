@@ -5,9 +5,10 @@ import "./Login.css"
 
 const Login = () => {
 
-    const redirect = useNavigate()
+    const navigate = useNavigate()
     const[email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [errorMessage, setErrorMessage] = useState('');
 
     async function submit(e) {
         e.preventDefault();
@@ -18,15 +19,17 @@ const Login = () => {
             const response = await axios.post("http://localhost:4000/login", {
                 email, password
             });
-
-            const data = response.data;
-            if (data.status === "exist") {
-                redirect("/home", { state: { id: data.email } }); // Passing user email as state to home
-            } else if (data.status === "notexist") {
-                alert("User has not signed up");
+            
+            const data = response.data
+            if (data.token && data.status === "exist") {
+                sessionStorage.setItem('token', data.token)
+                navigate("/home", { state: { id: data.email } })
+            } else {
+                setErrorMessage("Login failed, please check your credentials.")
             }
+
         } catch (e) {
-            alert("Login failed");
+            setErrorMessage("Login failed");
             console.log(e);
         }
     }
@@ -41,6 +44,7 @@ const Login = () => {
                     <input type = "text" onChange={(e)=>{setPassword(e.target.value)}} placeholder="password" name = "password" id = "password" />
                     <button type="submit">Login</button>
                 </form>
+                {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
 
                 <br />
 

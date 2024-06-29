@@ -81,7 +81,7 @@
 .BudgetForm button {
     grid-column: span 2; 
     padding: 10px 20px;
-    background-color: rgba(43, 43, 233, 0.895);  
+    background-color: #007bff;  
     color: white; 
     border: none;
     border-radius: 4px;
@@ -90,5 +90,5 @@
 }
 
 .BudgetForm button:hover {
-    background-color: rgb(40, 40, 234);  
+    background-color: #0056b3;  
 }
