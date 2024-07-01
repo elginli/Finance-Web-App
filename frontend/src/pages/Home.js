@@ -20,9 +20,9 @@ const Home = () => {
     const [showCharts, setShowCharts] = useState(false)
     const [expenses, setExpenses] = useState('')
 
-    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    const currentYear = new Date().getFullYear();
-    const years = Array.from({ length: 11 }, (_, index) => currentYear + index); // Creates an array from this year to next 10 years
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    const currentYear = new Date().getFullYear()
+    const years = Array.from({ length: 11 }, (_, index) => currentYear + index)
 
     const [month, setMonth] = useState('January')
     const [year, setYear] = useState(currentYear)
@@ -127,23 +127,23 @@ const Home = () => {
         plugins: {
           legend: {
             labels: {
-              color: 'black' // Sets the legend labels to black
+              color: 'black' 
             }
           },
           tooltip: {
-            titleColor: 'black', // Title color in tooltips
-            bodyColor: 'black'   // Body color in tooltips
+            titleColor: 'black', 
+            bodyColor: 'black'   
           }
         },
         scales: {
           x: {
             ticks: {
-              color: 'black' // Sets x-axis tick labels to black
+              color: 'black' 
             }
           },
           y: {
             ticks: {
-              color: 'black' // Sets y-axis tick labels to black
+              color: 'black' 
             }
           }
         }

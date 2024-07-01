@@ -1,8 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const schemas = require('../models/schemas')
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 
 
 router.post('/home', async(req,res) => {

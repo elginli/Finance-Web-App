@@ -9,11 +9,10 @@ const Signup = () => {
     const[name, setName] = useState('')
     const[email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [errorMessage, setErrorMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState('')
 
     const isValidEmail = (email) => {
-        // Simple regex for basic email validation
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
     }
 
     const submit = async (e) => {
@@ -33,13 +32,13 @@ const Signup = () => {
 
             const data = response.data;
             if (data.message === 'Email already in use') {
-                setErrorMessage("User already exists");
+                setErrorMessage("User already exists")
             } else {
-                redirect('/', { state: { id: data.email } });
+                redirect('/', { state: { id: data.email } })
             }
         } catch (e) {
-            setErrorMessage("Signup failed");
-            console.log(e);
+            setErrorMessage("Signup failed")
+            console.log(e)
         }
     };
 

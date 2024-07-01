@@ -8,10 +8,10 @@ const Login = () => {
     const navigate = useNavigate()
     const[email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [errorMessage, setErrorMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState('')
 
     async function submit(e) {
-        e.preventDefault();
+        e.preventDefault()
 
         console.log(email + '|' + password)
 
@@ -29,7 +29,7 @@ const Login = () => {
             }
 
         } catch (e) {
-            setErrorMessage("Login failed");
+            setErrorMessage("Login failed")
             console.log(e);
         }
     }

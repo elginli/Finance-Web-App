@@ -3,7 +3,7 @@ import Login from "../pages/Login"
 import Signup from "../pages/Signup"
 import ViewPast from "../pages/ViewPast"
 import SideBar from "./sidebar"
-import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom'
 
 function Router(){
     const Layout = () =>{

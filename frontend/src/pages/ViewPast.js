@@ -20,13 +20,13 @@ const ViewPast = () => {
     const [email, setEmail] = useState('')
     const [expenses, setExpenses] = useState('')
     const [userData, setUserData] = useState({})
-    const [creationDate, setCreationDate] = useState('');
-    const [message, setMessage] = useState(''); 
+    const [creationDate, setCreationDate] = useState('')
+    const [message, setMessage] = useState('')
 
 
-    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    const currentYear = new Date().getFullYear();
-    const years = Array.from({ length: 11 }, (_, index) => currentYear + index); // Creates an array from this year to next 10 years
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    const currentYear = new Date().getFullYear()
+    const years = Array.from({ length: 11 }, (_, index) => currentYear + index)
 
     const [month, setMonth] = useState('January')
     const [year, setYear] = useState(currentYear)
@@ -47,7 +47,7 @@ const ViewPast = () => {
         fetchData();
     });
     */
-   
+
     useEffect(() => {
         const fetchData = async () => {
             try {
