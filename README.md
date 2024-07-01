@@ -1,0 +1,1 @@
+Wanted to create a budgeting web app for myself so I can track my spending and be better with money. Also, developed my skills further and learned how to use Node.js, React.js, and MongoDB. This web app displays charts showing your money distribution and how much you are spending per category so you can understand what is your money going towards.
