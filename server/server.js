@@ -7,7 +7,7 @@ require('dotenv/config')
 
 const app = express();
 
-const bcrypt = require('bcryptjs')
+const bcrypt = require('bcrypt')
 
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
