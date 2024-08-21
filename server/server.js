@@ -10,6 +10,7 @@ const app = express();
 const bcrypt = require('bcrypt')
 
 app.use(express.json())
+
 app.use(express.urlencoded({extended:false}))
 
 const corsOptions = {
@@ -19,6 +20,11 @@ const corsOptions = {
 }
 
 app.use(cors(corsOptions))
+
+app.get('/', (req, res) => {
+    res.send('Welcome to the Home Page');
+});
+
 app.use('/', router)
 
 const port = process.env.PORT || 4000;
