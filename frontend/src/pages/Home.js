@@ -32,7 +32,7 @@ const Home = () => {
         const fetchData = async () => {
             try {
                 const token = sessionStorage.getItem('token');
-                const response = await axios.get("http://localhost:4000/user",{
+                const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/user`,{
                     headers: {
                         Authorization: `Bearer ${token}`
                     }}
@@ -63,7 +63,7 @@ const Home = () => {
             savings: savings || 0
         }
 
-        await axios.post("http://localhost:4000/home", postData)
+        await axios.post(`${process.env.REACT_APP_BACKEND_URL}/home`, postData)
         console.log(email + '|' + budget + '|' + month + '|' + year + '|' + food + '|' + school + '|' + home + '|' + transportation + '|' + entertainment + '|' + personal + '|' + savings)
         
     }

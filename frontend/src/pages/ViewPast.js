@@ -52,7 +52,7 @@ const ViewPast = () => {
         const fetchData = async () => {
             try {
                 const token = sessionStorage.getItem('token');
-                const response = await axios.get("http://localhost:4000/user",{
+                const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/user`,{
                     headers: {
                         Authorization: `Bearer ${token}`
                     }}
@@ -70,7 +70,7 @@ const ViewPast = () => {
 
     const getUserData = async () => {
         try {
-            const response = await axios.post('http://localhost:4000/userData', { email, month, year });
+            const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/userData`, { email, month, year });
             if (response.data) {
                 const { budget, food, school, home, transportation, entertainment, personal, savings, createdAt } = response.data;
     
